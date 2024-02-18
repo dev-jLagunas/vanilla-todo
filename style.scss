@@ -10,28 +10,299 @@ CSS Reset
 }
 
 /*****************************************
-Global Styles
-******************************************/
-
-/*****************************************
 Variables
 ******************************************/
+
 // Primary
-$bright-blue: hsl(220, 98%, 61%);
-$check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+$primary: (
+  bright-blue: hsl(220, 98%, 61%),
+  check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)),
+  very-light-gray: hsl(0, 0%, 98%),
+);
 
 // Light Theme
-$very-light-gray: hsl(0, 0%, 98%);
-$very-light-grayish-blue: hsl(236, 33%, 92%);
-$light-grayish-blue: hsl(233, 11%, 84%);
-$dark-grayish-blue: hsl(236, 9%, 61%);
-$very-dark-grayish-blue: hsl(235, 19%, 35%);
+$light-theme: (
+  very-light-grayish-blue: hsl(236, 33%, 92%),
+  dark-grayish-blue: hsl(236, 9%, 61%),
+  very-dark-grayish-blue: hsl(235, 19%, 35%),
+);
 
 // Dark Theme
-$very-dark-blue: hsl(235, 21%, 11%);
-$very-dark-desaturated-blue: hsl(235, 24%, 19%);
-$light-grayish-blue-dark-theme: hsl(234, 39%, 85%);
-$light-grayish-blue-hover: hsl(236, 33%, 92%);
-$dark-grayish-blue-dark-theme: hsl(234, 11%, 52%);
-$very-dark-grayish-blue-dark-theme1: hsl(233, 14%, 35%);
-$very-dark-grayish-blue-dark-theme2: hsl(237, 14%, 26%);
+$dark-theme: (
+  very-dark-blue: hsl(235, 21%, 11%),
+  light-grayish-blue: hsl(233, 11%, 84%),
+  very-dark-desaturated-blue: hsl(235, 24%, 19%),
+  light-grayish-blue-dark-theme: hsl(234, 39%, 85%),
+  light-grayish-blue-hover: hsl(236, 33%, 92%),
+  dark-grayish-blue-dark-theme: rgb(119, 122, 146),
+  very-dark-grayish-blue-dark-theme-1: hsl(233, 14%, 35%),
+  very-dark-grayish-blue-dark-theme-2: hsl(237, 14%, 26%),
+);
+
+// Current theme
+$current-theme: $dark-theme;
+
+/*****************************************
+Global Styles
+******************************************/
+body {
+  font-family: "Josefin Sans", sans-serif;
+  background-color: map-get($current-theme, "very-dark-blue");
+  color: map-get($current-theme, "light-grayish-blue-dark-theme");
+
+  &.light-theme {
+    color: map-get($light-theme, "dark-grayish-blue");
+    background-color: map-get($light-theme, "very-light-gray");
+    .todo-input {
+      background-color: map-get($light-theme, "very-light-grayish-blue");
+      color: map-get($light-theme, "dark-grayish-blue");
+    }
+    .todo-list {
+      background-color: map-get($light-theme, "very-light-grayish-blue");
+    }
+    .list-item {
+      color: map-get($light-theme, "dark-grayish-blue");
+    }
+    .list-info {
+      background-color: map-get($light-theme, "very-light-grayish-blue");
+    }
+    .filter-options {
+      background-color: map-get($light-theme, "very-light-grayish-blue");
+    }
+  }
+}
+
+/*****************************************
+Project Styles
+******************************************/
+
+//Container Styles
+.project-container {
+  height: 100vh;
+  background-image: url("images/bg-mobile-dark.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 30%;
+  padding-inline: 1rem;
+
+  &.light-theme {
+    background-image: url("images/bg-mobile-light.jpg");
+  }
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.form-container {
+  position: relative;
+}
+
+.list-container {
+  position: absolute;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+//Form/Input Styles
+
+.todo-form {
+  position: relative;
+
+  &::before {
+    content: "\f111";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: map-get($current-theme, "dark-grayish-blue-dark-theme");
+    opacity: 0.5;
+  }
+}
+
+.todo-input {
+  width: 100%;
+  background-color: map-get($current-theme, "very-dark-desaturated-blue");
+  padding: 1rem 3rem;
+  border-radius: 5px;
+  border: 0;
+  font-family: "Josefin Sans", sans-serif;
+
+  &::placeholder {
+    font-size: 0.8rem;
+  }
+
+  &:focus {
+    outline: none;
+    color: map-get($current-theme, "light-grayish-blue-dark-theme");
+  }
+}
+
+//List Styles
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: map-get($current-theme, "very-dark-desaturated-blue");
+  border-radius: 5px;
+}
+
+//List Item Styles
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  color: map-get($current-theme, "light-grayish-blue");
+  gap: 0.5rem;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid rgb(119, 122, 146, 0.3);
+  font-size: 0.9rem;
+}
+
+.fa-circle {
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  opacity: 0.2;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+  color: map-get($current-theme, "dark-grayish-blue-dark-theme");
+}
+
+.fa-solid {
+  margin-right: 1rem;
+  background: map-get($primary, "check-background");
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 1.1rem;
+  opacity: 1;
+}
+
+.fa-times {
+  color: map-get($current-theme, "dark-grayish-blue-dark-theme");
+  font-size: 1.1rem;
+  opacity: 0.4;
+}
+
+//List Information Styles
+.list-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  background-color: map-get($current-theme, "very-dark-desaturated-blue");
+  color: map-get($current-theme, "dark-grayish-blue-dark-theme");
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.list-info span {
+  margin-right: -19rem;
+}
+
+.list-info button {
+  background: transparent;
+  border: 0;
+  color: map-get($current-theme, "dark-grayish-blue-dark-theme");
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 0.8rem;
+
+  &:hover {
+    color: map-get($primary, "bright-blue");
+    cursor: pointer;
+  }
+}
+
+//Filter Options Styles
+.filter-options {
+  margin-top: 1rem;
+  background-color: map-get($current-theme, "very-dark-desaturated-blue");
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  align-items: center;
+  color: map-get($current-theme, "dark-grayish-blue-dark-theme");
+  margin-bottom: 1rem;
+}
+
+.filter-options input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.filter-options label {
+  cursor: pointer;
+}
+
+.filter-options label:hover {
+  color: map-get($primary, "bright-blue");
+}
+
+// Typography
+.header-title {
+  color: map-get($primary, "very-light-gray");
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 5px;
+}
+
+.theme-icon {
+  height: 25px;
+}
+
+/*****************************************
+Media Queries - Min Width 768px
+******************************************/
+@media (min-width: 768px) {
+  .project-container {
+    background-image: url("images/bg-desktop-dark.jpg");
+    background-size: 100% 150%;
+    background-repeat: no-repeat;
+    width: 70vw;
+    margin-inline: auto;
+
+    &.light-theme {
+      background-image: url("images/bg-desktop-light.jpg");
+    }
+  }
+
+  .header-container {
+    margin: 3rem 0 2rem 0;
+  }
+
+  .list-info {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .filter-options {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+// Media Queries - Min Width 1024px
+@media (min-width: 1024px) {
+  .project-container {
+    width: 40vw;
+  }
+
+  .header-container {
+    margin: 7rem 0 3rem 0;
+  }
+}
