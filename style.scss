@@ -99,6 +99,19 @@ Project Styles
   margin: 2rem 0 1rem 0;
 }
 
+.theme-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("/public/sun.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+body.light-theme .theme-icon {
+  background-image: url("/public/icon-moon.svg");
+}
+
 .form-container {
   position: relative;
 }
