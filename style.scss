@@ -81,14 +81,14 @@ Project Styles
 //Container Styles
 .project-container {
   height: 100vh;
-  background-image: url("images/bg-mobile-dark.jpg");
+  background-image: url("/images/bg-mobile-dark.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 30%;
   padding-inline: 1rem;
 
   &.light-theme {
-    background-image: url("images/bg-mobile-light.jpg");
+    background-image: url("/images/bg-mobile-light.jpg");
   }
 }
 
@@ -276,14 +276,14 @@ Media Queries - Min Width 768px
 ******************************************/
 @media (min-width: 768px) {
   .project-container {
-    background-image: url("images/bg-desktop-dark.jpg");
+    background-image: url("/images/bg-desktop-dark.jpg");
     background-size: 100% 150%;
     background-repeat: no-repeat;
     width: 70vw;
     margin-inline: auto;
 
     &.light-theme {
-      background-image: url("images/bg-desktop-light.jpg");
+      background-image: url("/images/bg-desktop-light.jpg");
     }
   }
 

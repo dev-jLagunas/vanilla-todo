@@ -18,7 +18,9 @@ taskList.forEach((task) => createTaskItem(task));
 //Event Listeners
 themeSwitchIcon.addEventListener("click", () => {
   const isLightMode = body.classList.toggle("light-theme");
-  themeSwitchIcon.src = isLightMode ? "public/icon-moon.svg" : "public/sun.svg";
+  themeSwitchIcon.src = isLightMode
+    ? "/public/icon-moon.svg"
+    : "/public/sun.svg";
   themeSwitchIcon.alt = isLightMode ? "Dark Icon" : "Light Icon";
 });
 todoForm.addEventListener("submit", handleItemSubmit);
